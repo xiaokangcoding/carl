@@ -5,7 +5,7 @@ import (
 	"log"
 
 	"github.com/grpc-ecosystem/grpc-opentracing/go/otgrpc"
-	zipkin "github.com/openzipkin/zipkin-go-opentracing"
+//	zipkin "github.com/openzipkin/zipkin-go-opentracing"
 	"google.golang.org/grpc"
 
 	"github.com/EDDYCJY/go-grpc-example/pkg/gtls"
