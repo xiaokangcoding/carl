@@ -67,7 +67,6 @@ func LoggingInterceptor(ctx context.Context, req interface{}, info *grpc.UnarySe
 func aa(ctx context.Context, req interface{}, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (interface{}, error)  {
 	fmt.Println("11111111")
 	resp, err := handler(ctx, req)
-	log.Printf("gRPC method: %s, %v", info.FullMethod, resp)
 	fmt.Println("22222222")
 	return resp, err
 }
