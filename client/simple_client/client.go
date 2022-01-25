@@ -29,7 +29,7 @@ func main() {
 	//}
 	//
 	//conn, err := grpc.Dial(":"+PORT, grpc.WithTransportCredentials(c))
-	conn, err := grpc.Dial(":"+PORT)
+	conn, err := grpc.Dial(":"+PORT,grpc.WithInsecure())
 	if err != nil {
 		log.Fatalf("grpc.Dial err: %v", err)
 	}
