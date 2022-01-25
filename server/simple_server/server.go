@@ -20,7 +20,7 @@ func (s *SearchService) Search(ctx context.Context, r *pb.SearchRequest) (*pb.Se
 	if ctx.Err() == context.Canceled {
 		return nil, status.Errorf(codes.Canceled, "searchService.Search canceled")
 	}
-	//panic("故意退出。。。。")
+	panic("故意退出。。。。")
 	fmt.Println("Search....................")
 	return &pb.SearchResponse{Response: r.GetRequest() + " Server"}, nil
 }
