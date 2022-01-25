@@ -66,9 +66,10 @@ func LoggingInterceptor(ctx context.Context, req interface{}, info *grpc.UnarySe
 }
 func aa(ctx context.Context, req interface{}, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (interface{}, error)  {
 	fmt.Println("11111111")
-	resp, err := handler(ctx, req)
+	//resp, err := handler(ctx, req)
 	fmt.Println("22222222")
-	return resp, err
+	//return resp, err
+	return nil, nil
 }
 
 func RecoveryInterceptor(ctx context.Context, req interface{}, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (resp interface{}, err error) {
