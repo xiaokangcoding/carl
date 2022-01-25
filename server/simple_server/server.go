@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"github.com/grpc-ecosystem/go-grpc-middleware"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
@@ -19,7 +20,7 @@ func (s *SearchService) Search(ctx context.Context, r *pb.SearchRequest) (*pb.Se
 	if ctx.Err() == context.Canceled {
 		return nil, status.Errorf(codes.Canceled, "searchService.Search canceled")
 	}
-	panic("故意退出。。。。")
+	//panic("故意退出。。。。")
 	return &pb.SearchResponse{Response: r.GetRequest() + " Server"}, nil
 }
 
@@ -69,6 +70,6 @@ func RecoveryInterceptor(ctx context.Context, req interface{}, info *grpc.UnaryS
 			err = status.Errorf(codes.Internal, "Panic err: %v", e)
 		}
 	}()
-
+	fmt.Println("recover...........")
 	return handler(ctx, req)
 }
