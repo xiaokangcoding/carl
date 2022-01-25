@@ -7,7 +7,6 @@ import (
 
 	"google.golang.org/grpc"
 
-	"github.com/EDDYCJY/go-grpc-example/pkg/gtls"
 	pb "github.com/EDDYCJY/go-grpc-example/proto"
 
 	"google.golang.org/grpc/codes"
@@ -17,19 +16,20 @@ import (
 const PORT = "9001"
 
 func main() {
-	tlsClient := gtls.Client{
-		ServerName: "go-grpc-example",
-		CaFile:     "../../conf/ca.pem",
-		CertFile:   "../../conf/client/client.pem",
-		KeyFile:    "../../conf/client/client.key",
-	}
-
-	c, err := tlsClient.GetCredentialsByCA()
-	if err != nil {
-		log.Fatalf("GetTLSCredentialsByCA err: %v", err)
-	}
-
-	conn, err := grpc.Dial(":"+PORT, grpc.WithTransportCredentials(c))
+	//tlsClient := gtls.Client{
+	//	ServerName: "go-grpc-example",
+	//	CaFile:     "../../conf/ca.pem",
+	//	CertFile:   "../../conf/client/client.pem",
+	//	KeyFile:    "../../conf/client/client.key",
+	//}
+	//
+	//c, err := tlsClient.GetCredentialsByCA()
+	//if err != nil {
+	//	log.Fatalf("GetTLSCredentialsByCA err: %v", err)
+	//}
+	//
+	//conn, err := grpc.Dial(":"+PORT, grpc.WithTransportCredentials(c))
+	conn, err := grpc.Dial(":"+PORT)
 	if err != nil {
 		log.Fatalf("grpc.Dial err: %v", err)
 	}

@@ -10,7 +10,6 @@ import (
 	"net"
 	"runtime/debug"
 
-	"github.com/EDDYCJY/go-grpc-example/pkg/gtls"
 	pb "github.com/EDDYCJY/go-grpc-example/proto"
 )
 
@@ -27,18 +26,18 @@ func (s *SearchService) Search(ctx context.Context, r *pb.SearchRequest) (*pb.Se
 const PORT = "9001"
 
 func main() {
-	tlsServer := gtls.Server{
-		CaFile:   "../../conf/ca.pem",
-		CertFile: "../../conf/server/server.pem",
-		KeyFile:  "../../conf/server/server.key",
-	}
-	c, err := tlsServer.GetCredentialsByCA()
-	if err != nil {
-		log.Fatalf("GetTLSCredentialsByCA err: %v", err)
-	}
+	//tlsServer := gtls.Server{
+	//	CaFile:   "../../conf/ca.pem",
+	//	CertFile: "../../conf/server/server.pem",
+	//	KeyFile:  "../../conf/server/server.key",
+	//}
+	//c, err := tlsServer.GetCredentialsByCA()
+	//if err != nil {
+	//	log.Fatalf("GetTLSCredentialsByCA err: %v", err)
+	//}
 
 	opts := []grpc.ServerOption{
-		grpc.Creds(c),
+		//grpc.Creds(c),
 		grpc_middleware.WithUnaryServerChain(
 			RecoveryInterceptor,
 			LoggingInterceptor,
