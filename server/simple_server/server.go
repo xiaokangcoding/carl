@@ -60,16 +60,17 @@ func main() {
 
 func LoggingInterceptor(ctx context.Context, req interface{}, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (interface{}, error) {
 	log.Printf("gRPC method: %s, %v", info.FullMethod, req)
-	resp, err := handler(ctx, req)
-	log.Printf("gRPC method: %s, %v", info.FullMethod, resp)
-	return resp, err
+	//resp, err := handler(ctx, req)
+	log.Printf("gRPC method: %s, %v", info.FullMethod, "resp")
+	return nil, nil
+	///return resp, err
 }
 func aa(ctx context.Context, req interface{}, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (interface{}, error)  {
 	fmt.Println("11111111")
-	//resp, err := handler(ctx, req)
+	resp, err := handler(ctx, req)
 	fmt.Println("22222222")
-	//return resp, err
-	return nil, nil
+	return resp, err
+//	return nil, nil
 }
 
 func RecoveryInterceptor(ctx context.Context, req interface{}, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (resp interface{}, err error) {
