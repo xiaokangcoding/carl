@@ -20,7 +20,7 @@ func (s *SearchService) Search(ctx context.Context, r *pb.SearchRequest) (*pb.Se
 	if ctx.Err() == context.Canceled {
 		return nil, status.Errorf(codes.Canceled, "searchService.Search canceled")
 	}
-	panic("故意退出。。。。")
+	//panic("故意退出。。。。")
 	fmt.Println("Search....................")
 	return &pb.SearchResponse{Response: r.GetRequest() + " Server"}, nil
 }
@@ -43,6 +43,7 @@ func main() {
 		grpc_middleware.WithUnaryServerChain(
 			RecoveryInterceptor,
 			LoggingInterceptor,
+			aa,
 		),
 	}
 
@@ -61,6 +62,13 @@ func LoggingInterceptor(ctx context.Context, req interface{}, info *grpc.UnarySe
 	log.Printf("gRPC method: %s, %v", info.FullMethod, req)
 	resp, err := handler(ctx, req)
 	log.Printf("gRPC method: %s, %v", info.FullMethod, resp)
+	return resp, err
+}
+func aa(ctx context.Context, req interface{}, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (interface{}, error)  {
+	fmt.Println("11111111")
+	resp, err := handler(ctx, req)
+	log.Printf("gRPC method: %s, %v", info.FullMethod, resp)
+	fmt.Println("22222222")
 	return resp, err
 }
 
