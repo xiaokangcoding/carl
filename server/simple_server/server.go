@@ -42,8 +42,9 @@ func main() {
 		//grpc.Creds(c),
 		grpc_middleware.WithUnaryServerChain(
 			RecoveryInterceptor,
-			LoggingInterceptor,
 			aa,
+			LoggingInterceptor,
+
 		),
 	}
 
@@ -60,10 +61,10 @@ func main() {
 
 func LoggingInterceptor(ctx context.Context, req interface{}, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (interface{}, error) {
 	log.Printf("gRPC method: %s, %v", info.FullMethod, req)
-	//resp, err := handler(ctx, req)
-	log.Printf("gRPC method: %s, %v", info.FullMethod, "resp")
-	return nil, nil
-	///return resp, err
+	resp, err := handler(ctx, req)
+	log.Printf("gRPC method: %s, %v", info.FullMethod, req)
+	//return nil, nil
+	return resp, err
 }
 func aa(ctx context.Context, req interface{}, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (interface{}, error)  {
 	fmt.Println("11111111")
