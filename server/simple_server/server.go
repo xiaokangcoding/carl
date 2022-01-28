@@ -3,7 +3,6 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/grpc-ecosystem/go-grpc-middleware"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
@@ -38,17 +37,18 @@ func main() {
 	//	log.Fatalf("GetTLSCredentialsByCA err: %v", err)
 	//}
 
-	opts := []grpc.ServerOption{
-		//grpc.Creds(c),
-		grpc_middleware.WithUnaryServerChain(
-			RecoveryInterceptor,
-			aa,
-			LoggingInterceptor,
-
-		),
-	}
-
-	server := grpc.NewServer(opts...)
+	//opts := []grpc.ServerOption{
+	//	//grpc.Creds(c),
+	//	grpc_middleware.WithUnaryServerChain(
+	//		RecoveryInterceptor,
+	//		aa,
+	//		LoggingInterceptor,
+	//
+	//	),
+	//}
+	//
+	//server := grpc.NewServer(opts...)
+	server := grpc.NewServer()
 	pb.RegisterSearchServiceServer(server, &SearchService{})
 
 	lis, err := net.Listen("tcp", ":"+PORT)
